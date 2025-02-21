@@ -46,8 +46,8 @@ const Modal = ({ open, setOpen, title, data }) => {
                                   setSubModal(true)
                                 }}
                                 type='button'
-                                className='mb-1.5 text-white bg-indigo-600 hover:bg-indigo-600 focus:ring-1
-                                focus:outline-none focus:ring-purple-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex
+                                className='text-white bg-indigo-600 hover:bg-indigo-600 focus:ring-1
+                                focus:outline-none focus:ring-purple-200 font-medium rounded-lg text-xs px-2 py-1 text-center inline-flex
                                 items-center dark:bg-indigo-600 dark:hover:bg-indigo-600 dark:focus:ring-indigo-600 cursor-pointer'
                               >
                                 Expandir Información

@@ -47,7 +47,8 @@ const InputWriter = () => {
           stats.letterFrequency[char] = (stats.letterFrequency[char] || 0) + 1
         }
 
-        if (/[^a-záéíóúüñ0-9\s.,;:!?(){}[\]@#$%^&*\-_+=<>/|\\~]/i.test(char)) {
+        // BUG: Not working xd
+        if (/[^a-zA-Z0-9\s.,;:!?(){}[\]@#$%^&%*\-_+=<>/|\\~`¦]/.test(char)) {
           stats.specialCharacters++
           stats.specialCharacterFrequency[char] = (stats.specialCharacterFrequency[char] || 0) + 1
         }
@@ -66,7 +67,6 @@ const InputWriter = () => {
         }
       }
 
-      // Contar palabras
       const words = text.match(/\b[\wáéíóúüñ]+\b/gi)
       stats.words = words ? words.length : 0
 
