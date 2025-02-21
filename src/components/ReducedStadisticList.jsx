@@ -1,8 +1,36 @@
-import { useContext } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import StadisticContext from '../context/StadisticContext'
+import Modal from '../components/Modal.jsx'
 
 const ReducedStadisticList = () => {
   const { stadisticValues } = useContext(StadisticContext)
+  const [data, setData] = useState({})
+  const [open, setOpen] = useState(false)
+
+  const traduction = {
+    vowels: 'Vocales',
+    consonants: 'Consonantes',
+    numbers: 'Números',
+    spaces: 'Espacios',
+    uppercase: 'Mayúsculas',
+    lowercase: 'Minúsculas',
+    words: 'Palabras',
+    letters: 'Letras',
+    specialCharacters: 'Caracteres especiales',
+    punctuation: 'Puntuación',
+    letterFrequency: 'Frecuencia de letras',
+    numberFrequency: 'Frecuencia de números',
+    alphabetFrequency: 'Frecuencia del alfabeto',
+    specialCharacterFrequency: 'Frecuencia de caracteres especiales',
+    punctuationFrequency: 'Frecuencia de puntuación'
+  }
+
+  useEffect(() => {
+    setData(Object.fromEntries(
+      Object.entries(stadisticValues).map(([key, value]) => [traduction[key], value])
+    ))
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [stadisticValues])
 
   return (
     <div className='min-h-90 max-h-76 max-w-sm rounded-xl overflow-hidden shadow-xl flex flex-col mx-auto mt-20 justify-between border-r-gray-300'>
@@ -72,6 +100,7 @@ const ReducedStadisticList = () => {
       <div className='px-6 pt-4 pb-2 flex justify-end'>
 
         <button
+          onClick={() => setOpen(true)}
           type='button' className='mb-2.5 text-white bg-indigo-600 hover:bg-indigo-600 focus:ring-1
           focus:outline-none focus:ring-purple-200 font-medium rounded-lg text-sm px-5 py-2.5
           text-center inline-flex items-center dark:bg-indigo-600 dark:hover:bg-indigo-600
@@ -89,6 +118,7 @@ const ReducedStadisticList = () => {
           </svg>
         </button>
       </div>
+      <Modal open={open} setOpen={setOpen} title='Estadística Completa' data={data} />
     </div>
 
   )
